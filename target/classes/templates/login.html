@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div class="corpo" layout:fragment="corpo">
+
+    
+
+    <div id="login" class="pre-load">
+    
+        <div class="container t-10">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6 border border-dark rounded">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" th:action="@{/login}" method="post" autocomplete="off">
+                            <h3 class="text-center text-info">SISTEMA <i class="fas fa-users"></i> LOGIN</h3>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">                              
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">                                
+                            </div>
+                            
+                             <div class="form-group">                              
+                               
+                                
+                                    <div class="alert alert-danger" id="error">
+                                        <button data-dismiss="alert" class="close">
+                                            ×
+                                        </button>
+                                        <i class="fa fa-times-circle"></i>
+                                        <strong>Erro de Login!</strong> Usuario ou senha incorreto.
+                                    </div>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script th:src="@{/js/promo-add.js}" th:fragment="js"></script>
+</div>
+</body>
+</html>
