@@ -33,8 +33,8 @@ public class UsuarioController {
 	
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
 	public String findAllCliente(ModelMap map) {
-		List<UsuarioDTO> usuarioDto = serviceUsuario.findAll().stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
-		Collections.sort(usuarioDto);
+		List<Object> usuarioDto = serviceUsuario.findAll().stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());
+		
 		LOG.info("LISTA DTO: " + usuarioDto.toString());
 		map.addAttribute("usuarios", usuarioDto);
 		return "usuario-lista";

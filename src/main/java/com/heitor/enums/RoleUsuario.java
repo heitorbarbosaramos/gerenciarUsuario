@@ -25,7 +25,7 @@ public enum RoleUsuario {
 	}
 	
 	public static List<RoleUsuario> listaRole(){
-		List<RoleUsuario> lista = new ArrayList<>();
+		List<RoleUsuario> lista = new ArrayList<RoleUsuario>();
 		for(RoleUsuario x : RoleUsuario.values()) {
 			lista.add(x);
 		}
