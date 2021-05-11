@@ -95,4 +95,11 @@ public class UsuarioController {
 		serviceUsuario.excluirUsuario(idUsuario);
 		return ResponseEntity.ok().build();
 	}
+	
+	@RequestMapping(value = "/excluir/telefone", method = RequestMethod.DELETE)
+	public ResponseEntity<?> removeTelefone(Integer idUsuario, String telefoneExcluir){
+		Usuario usuario = serviceUsuario.removeTelefones(serviceUsuario.findById(idUsuario), telefoneExcluir);
+		serviceUsuario.save(usuario);
+		return ResponseEntity.ok().build();
+	}
 }

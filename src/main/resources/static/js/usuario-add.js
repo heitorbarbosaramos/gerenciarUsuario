@@ -10,12 +10,48 @@ $("#addTelefone").on("click",function(){
   	document.getElementById("listaTelefone").innerHTML = listaTelefone ;
 
   	$("#telefone").val("");
-
-	
-
 	console.log(listaTelefone);
 })
 
+$("button[id*='excluitTelefone-']").on("click", function(){
+	var telefoneExcluir = $(this).attr("id").split("-")[1];
+	telefoneExcluir += "-" + $(this).attr("id").split("-")[2];
+	var idUsuario	= $("#idUsuario").val();
+
+	console.log("EXCLUIR TELEFONE");
+	console.log("ID USUARIO: " + idUsuario);
+	console.log("TELEFONE: " + telefoneExcluir);
+
+	$.ajax({
+		method:"DELETE",
+		url:"/usuario/excluir/telefone",
+		data:{idUsuario, telefoneExcluir},
+		beforeSend:function(){
+			$("#mensagem").removeClass("alert alert-success");
+			$("#mensagem").removeClass("alert alert-danger");
+			$("#mensagem").addClass("alert alert-warning").show();
+			$("#mensagem").text("Atualizando, espero um momento");
+		},
+		success:function(){
+			location.reload();
+		},
+		error:function(xhr){
+			console.log("ERROR AO EXLCUIR TELEFONE DO USUARIO");
+			console.log("error > ", xhr.responseText);
+			var errors = $.parseJSON(xhr.responseText);
+			$.each(errors,function(key, val){
+				console.log("KEY: "+ key + " - VAL: "+val);
+				$("#"+ key).addClass("border border-danger");
+			});
+			$("#mensagem").addClass("alert alert-danger");
+			$("#mensagem").show();
+			$("#mensagem").text("Erro ao excluir telefone do usuario");
+			alert("Erro ao excluir telefone do usuario");
+			
+		}
+
+	})
+})
 
 
 $("#form-new-usuario").submit(function(evt){
