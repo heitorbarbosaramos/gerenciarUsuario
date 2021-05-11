@@ -92,7 +92,8 @@ public class UsuarioController {
 			return atualizarUsuario(idUsuario, nome, email, login, senha, telefones1, telefones2, telefones3, rolesUser);
 		}
 		
-		Usuario usuario = new Usuario(idUsuario, nome, email, login, Senha.encriptarSenha(senha));
+		Usuario usuario = new Usuario(null, nome, email, login, Senha.encriptarSenha(senha));
+		serviceUsuario.save(usuario);
 		serviceUsuario.addTelefones(usuario, telefones1);
 		serviceUsuario.addTelefones(usuario, telefones2);
 		serviceUsuario.addTelefones(usuario, telefones3);

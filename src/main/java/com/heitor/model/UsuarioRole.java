@@ -3,6 +3,7 @@ package com.heitor.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -20,7 +21,7 @@ public class UsuarioRole implements GrantedAuthority {
 	private String descricaoRoler;
 
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Usuario> usuarios = new ArrayList<>();
 
 	public UsuarioRole() {

@@ -52,7 +52,7 @@ public class UsuarioService {
 			for (String x : role) {				
 				UsuarioRole roleUsuario = serviceUsuarioRole.findById(x);	
 				usuario.addRoles(roleUsuario);
-				roleUsuario.setUsuarios(usuario);
+//				roleUsuario.setUsuarios(usuario);
 			}
 		}
 		return usuario;

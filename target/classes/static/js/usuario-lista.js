@@ -9,7 +9,7 @@ $("button[id*='exluirUsuario-']").on("click", function(){
 
 	$.ajax({
 		method:"DELETE",
-		url:"/usuario/excluir/"+idUsuario,
+		url:"/usuario/excluir/"+ idUsuario,
 		beforeSend:function(){
 			$(this).addClass("spinner-border spinner-border-smr");
 			$("#mensagem").removeClass("alert alert-success");
@@ -37,7 +37,7 @@ $("button[id*='exluirUsuario-']").on("click", function(){
 			});
 			$("#mensagem").addClass("alert alert-danger");
 			$("#mensagem").show();
-			$("#mensagem").text("Erro ao gravar novo usuario");
+			$("#mensagem").text("Erro ao excluir usuario");
 			alert("Erro ao exluir usuario");
 			
 		}
