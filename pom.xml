@@ -15,7 +15,7 @@
 	<name>gerenciarUsuario</name>
 	<description>Gerenciar usuarios</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.6</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
