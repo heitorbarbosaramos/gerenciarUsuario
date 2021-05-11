@@ -20,10 +20,7 @@
 				<div class="form-group col-lg-3">
 					<small class="form-text text-muted">Senha</small>
 					<input type="password" name="senha" class="form-control" id="senha">
-				</div>
-
-			</div>
-			<div class="row">
+				</div>		
 
 				<div class="form-group col-lg-3">
 					<small class="form-text text-muted">Email</small>
@@ -31,22 +28,30 @@
 				</div>
 
 				<div class="form-group col-lg-3">
-					<small class="form-text text-muted">Telefone 1</small>
-					<input type="text" name="telefones1" class="form-control" id="telefones1" required="required" th:value="${telefones1}">
+					<small class="form-text text-muted">vazio</small>
+					<input type="email"  class="form-control" disabled="">	
 				</div>
 
-				<div class="form-group col-lg-3">
-					<small class="form-text text-muted">Telefone 2</small>
-					<input type="text" name="telefones2" class="form-control" id="telefones2" th:value="${telefones2}" >
-				</div>
-
-				<div class="form-group col-lg-3">
-					<small class="form-text text-muted">Telefone 3</small>
-					<input type="text" name="telefones3" class="form-control" id="telefones3" th:value="${telefones3}">
-				</div>
 			</div>
 			<div class="row">
 
+				<div class="form-group col-lg-3">
+					<small class="form-text text-muted">Telefone</small>
+					<input type="text" name="telefone" class="form-control" id="telefone">
+				</div>
+
+				<div class="col-lg-1 mb-1">	
+					<small class="form-text text-muted">add Tel</small>
+					<button class="btn btn-primary" id="addTelefone" type="button" >
+  						<i class="fas fa-phone-square"></i>
+					</button>
+				</div>
+
+
+				<div class="col-lg-2 mb-1">	
+					<small class="form-text text-muted">Lista Telefone</small>
+					<div id="listaTelefone"></div>
+				</div>
 				
 
 				<div class="form-group col-lg-3">
@@ -74,6 +79,32 @@
 					</button>
 					
 					
+				</div>
+
+			</div>
+			<div class="col-lg-12">
+
+
+				<div class="row">
+					<div th:each="telefone : ${telefones}">
+						
+						<div class="form-group col-lg-12">
+							<small class="form-text text-muted">Excluir telefone</small>
+							
+							<div class="row">
+								<div class="col-lg-2 mb-1">									
+									<button class="btn btn-danger" id="botaoSalvar" type="submit" >
+			  							<i class="fas fa-plus-circle"></i>
+									</button>
+								</div>
+								<div class="col-lg-9 mb-1">	
+									<input type="text" name="telefones" class="form-control" id="telefones" th:value="${telefone}" disabled="disabled">
+								</div>
+							</div>
+
+						</div>
+
+					</div>
 				</div>
 
 			</div>

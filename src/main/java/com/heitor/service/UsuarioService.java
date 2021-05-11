@@ -58,8 +58,18 @@ public class UsuarioService {
 		return usuario;
 	}
 	
-	public Usuario addTelefones(Usuario usuario, String telefone) {
-		if(telefone != null) {usuario.addTelefones(telefone);}
+	public Usuario addTelefones(Usuario usuario, String telefones) {
+		if(telefones != null) {
+			String[] listaTel = telefones.split(",");
+			for(String split : listaTel) {
+				usuario.addTelefones(split);
+			}
+		}
+		return usuario;
+	}
+	
+	public Usuario removeTelefones(Usuario usuario, String telefone) {
+		if(telefone != null) {usuario.removeTelefones(telefone);}
 		return usuario;
 	}
 	

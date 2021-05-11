@@ -46,7 +46,7 @@ public class UsuarioController {
 		map.addAttribute("roles", roles);
 		return "usuario-add";
 	}
-	private Integer aux;
+
 	@RequestMapping(value = "/editar/{id}", method = RequestMethod.GET)
 	public String editar(@PathVariable(value = "id") Integer id, ModelMap map) {
 		UsuarioDTO usuarioDto = serviceUsuario.fromDto(serviceUsuario.findById(id));
@@ -55,13 +55,7 @@ public class UsuarioController {
 		map.addAttribute("nome", usuarioDto.getNome());
 		map.addAttribute("login", usuarioDto.getLogin());
 		map.addAttribute("email", usuarioDto.getEmail());
-		aux = 1;
-		usuarioDto.getTelefones().forEach(tel ->{
-			map.addAttribute("telefones" + aux++, tel);
-			
-		});
-		
-		
+		map.addAttribute("telefones", usuarioDto.getTelefones());
 		
 		usuarioDto.getRoles().forEach(role ->{
 			map.addAttribute("checar"+role.getNomeRole(), true);
@@ -72,34 +66,25 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "/atualizar",method = RequestMethod.POST)
-	public ResponseEntity<?> atualizarUsuario (Integer idUsuario, String nome, String email, String login, String senha, String telefones1, String telefones2, String telefones3, String rolesUser){
+	public ResponseEntity<?> atualizarUsuario (Integer idUsuario, String nome, String email, String login, String senha, String telefones, String rolesUser){
 		Usuario usuario = serviceUsuario.findById(idUsuario);
 		usuario.setNome(nome);
 		usuario.setEmail(email);
 		usuario.setLogin(login);
 		usuario.setSenha(senha != null ? Senha.encriptarSenha(senha):usuario.getSenha());
-		serviceUsuario.addTelefones(usuario, telefones1);
-		serviceUsuario.addTelefones(usuario, telefones2);
-		serviceUsuario.addTelefones(usuario, telefones3);
+		serviceUsuario.addTelefones(usuario, telefones);
 		serviceUsuario.setarStatus(rolesUser, usuario);
 		serviceUsuario.save(usuario);
 		return ResponseEntity.ok().build();
 	}
 	
 	@RequestMapping(value = "/salvar",method = RequestMethod.POST)
-	public ResponseEntity<?> novoUsuario(Integer idUsuario, String nome, String email, String login, String senha, String telefones1, String telefones2, String telefones3, String rolesUser){
+	public ResponseEntity<?> novoUsuario(Integer idUsuario, String nome, String email, String login, String senha, String telefones,String rolesUser){
 		if(idUsuario != null) {
-			return atualizarUsuario(idUsuario, nome, email, login, senha, telefones1, telefones2, telefones3, rolesUser);
+			return atualizarUsuario(idUsuario, nome, email, login, senha, telefones, rolesUser);
 		}
-		
 		Usuario usuario = new Usuario(null, nome, email, login, Senha.encriptarSenha(senha));
-		serviceUsuario.save(usuario);
-		serviceUsuario.addTelefones(usuario, telefones1);
-		serviceUsuario.addTelefones(usuario, telefones2);
-		serviceUsuario.addTelefones(usuario, telefones3);
-		
-		serviceUsuario.save(usuario);
-		
+		serviceUsuario.addTelefones(usuario, telefones);	
 		serviceUsuario.setarStatus(rolesUser, usuario);
 		serviceUsuario.save(usuario);
 		return ResponseEntity.ok(serviceUsuario.fromDto(usuario));

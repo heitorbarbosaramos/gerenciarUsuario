@@ -1,9 +1,22 @@
 $(document).ready(function () {
-  $('input[name=telefones1]').mask('(00) 00000-0000');
-  $('input[name=telefones2]').mask('(00) 00000-0000');
-  $('input[name=telefones3]').mask('(00) 00000-0000');
+  $('input[name=telefone]').mask('(00) 00000-0000');
   $("#mensagem").hide();
 })
+var listaTelefone = [];
+var tel = '';
+$("#addTelefone").on("click",function(){
+	
+	listaTelefone.push($("#telefone").val() + "<br/>");
+  	document.getElementById("listaTelefone").innerHTML = listaTelefone ;
+
+  	$("#telefone").val("");
+
+	
+
+	console.log(listaTelefone);
+})
+
+
 
 $("#form-new-usuario").submit(function(evt){
 	console.log("CADASTRO NOVO USUARIO");
@@ -12,9 +25,7 @@ $("#form-new-usuario").submit(function(evt){
 	var idUsuario	= $("#idUsuario").val();
 	var nome 		= $("#nome").val();
 	var login 		= $("#login").val();
-	var telefones1 	= $("#telefones1").val();
-	var telefones2 	= $("#telefones2").val();
-	var telefones3 	= $("#telefones3").val();
+	var telefones 	= $("#listaTelefone").text();
 	var senha		= $("#senha").val();
 	var email		= $("#email").val();
 
@@ -32,14 +43,13 @@ $("#form-new-usuario").submit(function(evt){
 	console.log("Nome Cliente: " + nome);
 	console.log("Email: " + email);
 	console.log("Nome Usuario: " + login);
-	console.log("Telefone 1: " + telefones1);
-	console.log("Telefone 2: " + telefones2);
+	console.log("Telefone : " + telefones);
 	console.log("Roler: " + rolesUser);
 
 	$.ajax({
 		method:"POST",
 		url:"/usuario/salvar",
-		data: {idUsuario, nome, email, login, senha, telefones1, telefones2, telefones3, rolesUser},
+		data: {idUsuario, nome, email, login, senha, telefones, rolesUser},
 		beforeSend:function(){
 			$("#submeter").addClass("spinner-border spinner-border-smr");
 			$("#mensagem").removeClass("alert alert-success");
@@ -56,6 +66,7 @@ $("#form-new-usuario").submit(function(evt){
 				$("#mensagem").addClass("alert alert-success");
 				$("#mensagem").text("Usuario Cadastrado").show();
 				document.getElementById("form-new-usuario").reset();
+				$("#listaTelefone").text("");
 				console.log(result);
 		},
 		error:function(xhr){
