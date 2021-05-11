@@ -10,6 +10,6 @@ import com.heitor.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-	@Query("select u from Usuario u where u.userName=:userName")
-	public Usuario findByUserNamer(@PathVariable(value = "userName") String userName );
+	@Query("select u from Usuario u where u.login=:login")
+	public Usuario findByUserNamer(@PathVariable(value = "login") String login );
 }

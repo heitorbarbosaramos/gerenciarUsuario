@@ -29,6 +29,12 @@ public class DbService {
 		Usuario usuario1 = new Usuario(null, "Heitor Fernando Barbosa Ramos", "heitorhfbr@gmail.com", "heitor.ramos", Senha.encriptarSenha("123"));
 		Usuario usuario2 = new Usuario(null, "Carla Alcantará Fagundes", "carlinhafafa@gmail.com", "carla.fagundes", Senha.encriptarSenha("123"));
 	
+		usuario1.addTelefones("(11) 98946-1545");
+		usuario1.addTelefones("(81) 54346-8712");
+		usuario1.addTelefones("(21) 88761-9892");
+		
+		usuario2.addTelefones("(13) 98888-1234");		
+		
 		serviceUsuario.save(usuario1);
 		serviceUsuario.save(usuario2);
 		
@@ -36,12 +42,13 @@ public class DbService {
 			UsuarioRole role = new UsuarioRole();
 			role.setNomeRole(x.toString());
 			role.setDescricaoRoler(x.getDescricao());
-			serviceUsuarioRole.save(role);
-			usuario1.addRoles(role);
-			role.setUsuarios(usuario1);
-			serviceUsuario.save(usuario1);			
+			serviceUsuarioRole.save(role);					
 		}
 	
+		usuario1.addRoles(serviceUsuarioRole.findById(RoleUsuario.ROLE_ADMIN.toString()));
+		usuario1.addRoles(serviceUsuarioRole.findById(RoleUsuario.ROLE_USUARIO.toString()));
+		usuario2.addRoles(serviceUsuarioRole.findById(RoleUsuario.ROLE_USUARIO.toString()));
+		serviceUsuario.save(usuario1);	
+		serviceUsuario.save(usuario2);	
 	}
-
 }

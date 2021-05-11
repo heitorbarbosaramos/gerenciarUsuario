@@ -1,6 +1,7 @@
 $(document).ready(function () {
   $('input[name=telefones1]').mask('(00) 00000-0000');
   $('input[name=telefones2]').mask('(00) 00000-0000');
+  $('input[name=telefones3]').mask('(00) 00000-0000');
   $("#mensagem").hide();
 })
 
@@ -8,10 +9,12 @@ $("#form-new-usuario").submit(function(evt){
 	console.log("CADASTRO NOVO USUARIO");
 	evt.preventDefault();
 
+	var idUsuario	= $("#idUsuario").val();
 	var nome 		= $("#nome").val();
-	var userName 	= $("#userName").val();
+	var login 		= $("#login").val();
 	var telefones1 	= $("#telefones1").val();
 	var telefones2 	= $("#telefones2").val();
+	var telefones3 	= $("#telefones3").val();
 	var senha		= $("#senha").val();
 	var email		= $("#email").val();
 
@@ -20,12 +23,15 @@ $("#form-new-usuario").submit(function(evt){
 		rolesUser  += "ROLE_ADMIN,";
 	}
 	if($("#ROLE_USUARIO").is(":checked") == true){
-		rolesUser += "ROLE_USER,";
+		rolesUser += "ROLE_USUARIO,";
 	}
 
+	
+
+	console.log("ID Cliente: " + idUsuario);
 	console.log("Nome Cliente: " + nome);
 	console.log("Email: " + email);
-	console.log("Nome Usuario: " + userName);
+	console.log("Nome Usuario: " + login);
 	console.log("Telefone 1: " + telefones1);
 	console.log("Telefone 2: " + telefones2);
 	console.log("Roler: " + rolesUser);
@@ -33,7 +39,7 @@ $("#form-new-usuario").submit(function(evt){
 	$.ajax({
 		method:"POST",
 		url:"/usuario/salvar",
-		data: {nome, email, userName, senha, telefones1, telefones2, rolesUser},
+		data: {idUsuario, nome, email, login, senha, telefones1, telefones2, telefones3, rolesUser},
 		beforeSend:function(){
 			$("#submeter").addClass("spinner-border spinner-border-smr");
 			$("#mensagem").removeClass("alert alert-success");

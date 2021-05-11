@@ -1,0 +1,88 @@
+		<form id="form-new-usuario" autocomplete="off">
+
+	    	<div class="row">
+
+	    		<input type="hidden" id="idUsuario" th:value="${idUsuario}">
+	        
+		        <div class="form-group col-lg-12">
+					<small class="form-text text-muted">Nome completo</small>
+					<input type="text" name="nome" class="form-control" id="nome" required="required" th:value="${nome}">	
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="form-group col-lg-3">
+					<small class="form-text text-muted">Nome usuario</small>
+					<input type="text" name="login" class="form-control" id="login" required="required" th:value="${login}">	
+				</div>
+
+				<div class="form-group col-lg-3">
+					<small class="form-text text-muted">Senha</small>
+					<input type="password" name="senha" class="form-control" id="senha">
+				</div>
+
+			</div>
+			<div class="row">
+
+				<div class="form-group col-lg-3">
+					<small class="form-text text-muted">Email</small>
+					<input type="email" name="email" class="form-control" id="email" required="required" th:value="${email}">	
+				</div>
+
+				<div class="form-group col-lg-3">
+					<small class="form-text text-muted">Telefone 1</small>
+					<input type="text" name="telefones1" class="form-control" id="telefones1" required="required" th:value="${telefones1}">
+				</div>
+
+				<div class="form-group col-lg-3">
+					<small class="form-text text-muted">Telefone 2</small>
+					<input type="text" name="telefones2" class="form-control" id="telefones2" th:value="${telefones2}" >
+				</div>
+
+				<div class="form-group col-lg-3">
+					<small class="form-text text-muted">Telefone 3</small>
+					<input type="text" name="telefones3" class="form-control" id="telefones3" th:value="${telefones3}">
+				</div>
+			</div>
+			<div class="row">
+
+				
+
+				<div class="form-group col-lg-3">
+					<small class="form-text text-muted">Nivel de acesso</small>
+					
+					<div th:each="role : ${roles}">
+						
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" th:checked="${checar}" th:id="${role.nomeRole}">
+							<label class="form-check-label" for="flexCheckDefault" th:text="${role.descricaoRoler}"></label>
+							
+						</div>
+
+					</div>
+
+
+				</div>
+
+				<div class="col-lg-3 mb-1">	
+					<small class="form-text text-muted">Salvar</small>
+					<button class="btn btn-primary" id="botaoSalvar" type="submit" >
+  						<span id="submeter" role="status" aria-hidden="true"></span>
+  						<span class="sr-only">Loading...</span>
+  						<i class="fas fa-plus-circle"></i>
+					</button>
+					
+					
+				</div>
+
+			</div>
+
+			
+
+
+		</form>	
+
+		<div class="col-lg-9 mb-4">	
+			<div class="alert alert-warning col-lg-5" id="mensagem" role="alert">Mensagem</div>
+		</div>

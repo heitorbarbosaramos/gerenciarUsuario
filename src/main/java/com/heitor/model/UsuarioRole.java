@@ -9,6 +9,8 @@ import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class UsuarioRole implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
@@ -17,6 +19,7 @@ public class UsuarioRole implements GrantedAuthority {
 	private String nomeRole;
 	private String descricaoRoler;
 
+	@JsonIgnore
 	@ManyToMany
 	private List<Usuario> usuarios = new ArrayList<>();
 

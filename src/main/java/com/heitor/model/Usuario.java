@@ -22,7 +22,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Usuario implements Serializable, UserDetails{
+public class Usuario implements Serializable, UserDetails, Comparable<Usuario>{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -31,7 +31,7 @@ public class Usuario implements Serializable, UserDetails{
 	private String nome;
 	@Email
 	private String email;
-	private String userName;
+	private String login;
 	private String senha;	
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")
@@ -45,11 +45,11 @@ public class Usuario implements Serializable, UserDetails{
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String nome, String email, String userName, String senha) {
+	public Usuario(Integer id, String nome, String email, String login, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.userName = userName;
+		this.login = login;
 		this.email = email;
 		this.senha = senha;
 	}
@@ -82,12 +82,12 @@ public class Usuario implements Serializable, UserDetails{
 		return senha;
 	}
 	
-	public String getUserName() {
-		return userName;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public void setSenha(String senha) {
@@ -153,4 +153,10 @@ public class Usuario implements Serializable, UserDetails{
 		return false;
 	}
 
+	@Override
+	public int compareTo(Usuario outro) {
+		return getNome().compareTo(outro.getNome());
+	}
+
+	
 }

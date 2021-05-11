@@ -25,7 +25,9 @@
 <body>
 
 <div th:insert="menu.html" sec:authorize="isAuthenticated()" >...</div>
-
+<div class="col-lg-12 mb-12"> 
+    <div class="alert alert-warning col-lg-5" id="mensagem" role="alert">Mensagem</div>
+</div>
 <main role="main" class="container">
     <div layout:fragment="corpo">
         <div>conteudo principal das páginas</div>
