@@ -15,6 +15,7 @@ public class UsuarioRole implements GrantedAuthority {
 
 	@Id
 	private String nomeRole;
+	private String descricaoRoler;
 
 	@ManyToMany
 	private List<Usuario> usuarios = new ArrayList<>();
@@ -38,7 +39,13 @@ public class UsuarioRole implements GrantedAuthority {
 		this.usuarios.add(usuario);
 	}
 
+	public String getDescricaoRoler() {
+		return descricaoRoler;
+	}
 
+	public void setDescricaoRoler(String descricaoRoler) {
+		this.descricaoRoler = descricaoRoler;
+	}
 
 	@Override
 	public String getAuthority() {

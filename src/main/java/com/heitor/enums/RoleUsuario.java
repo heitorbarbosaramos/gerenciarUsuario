@@ -5,8 +5,8 @@ import java.util.List;
 
 public enum RoleUsuario {
 
-	ADMINISTRADOR(1, "Administrador"),
-	USUARIO(2, "Usuário comum");
+	ROLE_ADMIN(1, "Administrador"),
+	ROLE_USUARIO(2, "Usuário comum");
 	
 	private Integer cod;
 	private String descricao;

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heitor.model.Usuario;
+import com.heitor.model.DTO.UsuarioDTO;
 import com.heitor.repository.UsuarioRepository;
 
 @Service
@@ -18,6 +19,11 @@ public class UsuarioService {
 	
 	public Usuario findByusername(String userName) {
 		return repo.findByUserNamer(userName);
+	}
+	
+	public UsuarioDTO fromDto(Usuario usuario) {
+		UsuarioDTO usuarioDto = new UsuarioDTO(usuario);
+		return usuarioDto;
 	}
 	
 

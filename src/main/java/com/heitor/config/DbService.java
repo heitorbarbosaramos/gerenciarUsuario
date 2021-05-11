@@ -35,6 +35,7 @@ public class DbService {
 		for(RoleUsuario x : RoleUsuario.values()) {
 			UsuarioRole role = new UsuarioRole();
 			role.setNomeRole(x.toString());
+			role.setDescricaoRoler(x.getDescricao());
 			serviceUsuarioRole.save(role);
 			usuario1.addRoles(role);
 			role.setUsuarios(usuario1);

@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityAdpter extends WebSecurityConfigurerAdapter {
 
-	private final String[] PUBLIC_ACCES = {"/h2-gerenciarUsuario/**"};
+	private final String[] PUBLIC_ACCES = {"/h2-gerenciarUsuario/**", "/js/**"};
 	
 	@Autowired
 	private Environment env;
